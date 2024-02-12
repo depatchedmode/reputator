@@ -15,7 +15,7 @@ const getRandomCast = async() => {
     'channel_id': process.env.CHANNEL_ID,
     'with_recasts': false,
     'with_replies': false,
-    'limit': 10
+    'limit': 100
   });
   const url = new URL(`${base}?${params}`).href;
   const response = await fetch(url, options)
