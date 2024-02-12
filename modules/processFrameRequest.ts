@@ -93,29 +93,24 @@ const respondWithFrame = async (
 function handleImageSource(name, simpleFrame, message):string {
   const dataUriPattern = /^data:image\/[a-zA-Z]+;base64,/;
   const absoluteUrlPattern = /^https?:\/\//;
-  const htmlPattern = /<("[^"]*"|'[^']*'|[^'">])*>/;
   const host = process.env.URL;
   const { imageSrc } = simpleFrame;
 
-  console.log(imageSrc)
-
   if (dataUriPattern.test(imageSrc)) {
     return `${host}/og-image?${objectToURLSearchParams({
-      t: new Date().valueOf(), // Current timestamp for cache busting.
       dataUri: imageSrc,
     })}`;
   } else if (absoluteUrlPattern.test(imageSrc)) {
     return `${host}/og-image?${objectToURLSearchParams({
-      t: new Date().valueOf(), // Current timestamp for cache busting.
       externalImageUrl: imageSrc,
     })}`;
-  } else if (htmlPattern.test(imageSrc)) {
+  } else if (imageSrc) {
+    return `${host}/${imageSrc}`
+  } else {
     return `${host}/og-image?${objectToURLSearchParams({
       t: new Date().valueOf(), // Current timestamp for cache busting.
       frameName: name || '', 
       message
     })}`;
-  } else {
-    return `${host}/${imageSrc}`
   }
 }
