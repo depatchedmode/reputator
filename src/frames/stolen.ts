@@ -4,7 +4,7 @@ export default {
   name: 'poster',
   logic: () => null,
   content: () => html`
-    <frame-image src="${process.env.URL}/images/poster-animated.gif" />
+    <frame-image src="images/stolen.png" />
     <frame-button>
       🔳 Try Demo
     </frame-button>

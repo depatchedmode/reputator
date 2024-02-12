@@ -9,7 +9,7 @@ export default {
     }
   },
   content: () => html`
-    <frame-image src="${process.env.URL}/images/credits.png" />
+    <frame-image src="images/credits.png" />
     <frame-button>
       ⬅️ Back
     </frame-button>

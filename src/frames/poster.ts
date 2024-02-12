@@ -16,7 +16,7 @@ export default {
     }
   },
   content: () => html`
-    <frame-image src="${process.env.URL}/images/poster-animated.gif" />
+    <frame-image src="images/poster-animated.gif" />
     <frame-button>
       Start Judging
     </frame-button>
