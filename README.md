@@ -1,6 +1,6 @@
 # Reputator
 
-A simple frame for helping a channel's members rank the quality of contributions. 
+A simple Frame for helping a Warpcast Channel's members rank the quality of contributions. 
 
 **How:** 
 1. You get shown a random cast from the channel

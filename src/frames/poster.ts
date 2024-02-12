@@ -10,24 +10,24 @@ export default {
       case 2:
         return `pulse`;
       case 3:
-        return `my-rank`;
+        return `myrank`;
       case 4:
         return `credits`;
     }
   },
   content: () => html`
-    <frame-image src="images/poster-animated.gif" />
+    <frame-image src="images/poster.png" />
     <frame-button>
-      Start Judging
+      ⚖️ Judge
     </frame-button>
     <frame-button>
-      Channel Pulse
+      ❤️‍🔥 Pulse
     </frame-button>
     <frame-button>
-      My Rank
+      🫵 You
     </frame-button>
     <frame-button>
-      ℹ️
+      ℹ️ Info
     </frame-button>
   `
 };

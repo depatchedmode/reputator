@@ -9,14 +9,8 @@ export default async (frameContent) => {
           url("/fonts/Redaction-Regular") format("woff2");
       }
       :root {
-        --background: white;
-        --text: black;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --background: black;
-          --text: white;
-        }
+        --background: #11071C;
+        --text: #F1E5FF;
       }
       body {
         padding: 2rem;
@@ -38,12 +32,15 @@ export default async (frameContent) => {
       }
     </style>
   `
-  
+
   const body = html`
-    <h1>🔳 The Simplest Frame</h1>
+    <h1>Reputator</h1>
+    <h2>/degen Edition</h2>
     <figure>
         <img width="600" src="${frameContent.image}" />
     </figure>
+    <h2>Coming soon...</h2>
+    <p>Lists of the highest and lowest ranked contributors. First, we need to collect enough data! Help out by sharing your judgements.</p>
   `
 
   return {
