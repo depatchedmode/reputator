@@ -1,5 +1,6 @@
 export default async (frameContent) => {
   const html = String.raw;
+  const title = 'Reputator';
   const head = html`
     <style>
       @font-face {
@@ -45,6 +46,7 @@ export default async (frameContent) => {
 
   return {
     head,
-    body
+    body,
+    title
   };
 }

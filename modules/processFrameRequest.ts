@@ -74,9 +74,9 @@ const respondWithFrame = async (
   const index = await landingPage(frame);
   const options: GetFrameHtmlOptions = {
     og: {
-        title: '🔳 Simplest Frame', 
+        title: index.title, 
     },
-    title: '🔳 Simplest Frame', 
+    title: index.title, 
     htmlBody: index.body, 
     htmlHead: index.head
   };
