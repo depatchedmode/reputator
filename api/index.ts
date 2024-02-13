@@ -9,7 +9,7 @@ export default async (req) => {
     const frameMessage = payload ? await getFrameMessage(payload) : {} as FrameActionDataParsed;
 
     const frameContext = {
-      from: requestURL.searchParams.get('frame'),
+      searchParams: requestURL.searchParams,
       requestURL: payload?.untrustedData.url,
     }
     

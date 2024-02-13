@@ -14,10 +14,10 @@ import htmlToSimpleFrame from './htmlToSimpleFrame.js';
  */
 export default async (frameContext, frameMessage: FrameActionDataParsed) => {
   let nextFrameName = 'poster';
-  const prevFrame = frames[frameContext.from];
+  const prevFrame = frames[frameContext.searchParams?.get('frame')];
 
   if (prevFrame && typeof prevFrame.logic === 'function') {
-    nextFrameName = await prevFrame.logic(frameMessage);
+    nextFrameName = await prevFrame.logic(frameMessage, frameContext);
   }
 
   if (await isFrameStolen(frameMessage)) {
@@ -60,13 +60,15 @@ const respondWithFrame = async (
   simpleFrame, 
   message: FrameActionDataParsed
 ) => {
+  const postVars = new URLSearchParams(simpleFrame.postVars);
+  postVars.set('frame', name);
   const host = process.env.URL;
   const frame: Frame = {
     version: 'vNext', 
     image: handleImageSource(name, simpleFrame, message),
     buttons: simpleFrame.buttons, 
     inputText: simpleFrame.inputText, 
-    postUrl: `${host}/?frame=${name}`
+    postUrl: `${host}/?${postVars}`
   };
 
   const index = await landingPage(frame);

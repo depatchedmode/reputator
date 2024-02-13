@@ -1,18 +1,21 @@
 import { getRandomCast } from '../data/casts.js';
 import { FrameActionDataParsed } from 'frames.js';
 const html = String.raw;
+import { setJudgement } from '../data/judgements.js';
 
 export default {
   name: 'judge',
-  logic: async (frameMessage: FrameActionDataParsed) => {
+  logic: async (frameMessage: FrameActionDataParsed, frameContext) => {
     switch (frameMessage.buttonIndex) {
       case 1:
         return `poster`;
-      case 2:
+      case 2: // good
+        await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 1);
         return `judge`;
-      case 3:
+      case 3: // re-roll
         return `judge`;
-      case 4:
+      case 4: // bad
+        await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, -1);
         return `judge`;
     }
   },
@@ -27,11 +30,15 @@ export default {
         👍
       </frame-button>
       <frame-button>
-        🎲
+        🤷‍♂️
       </frame-button>
       <frame-button>
         👎
       </frame-button>
+      <frame-post-var name="castHash" value="${cast.hash}">
+      </frame-post-var>
+      <frame-post-var name="hello" value="world">
+      </frame-post-var>
     `;
   },
 }

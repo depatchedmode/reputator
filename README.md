@@ -26,7 +26,9 @@ Developed using `v0.8.3` of [`simplest-frame`](https://github.com/depatchedmode/
     - warpcast opengraph image
 
 - Data to Store:
-    - Judgements: uuid(judgeFid+castHash), judgeFid, castHash, casterFid, judgement, timestamp
+    - Judgements: id(judgeFid+castHash), judgeFid, castHash, casterFid, judgement, timestamp
+    - Casts: castHash, judgements (counter)
+    - Casters: fid, judgements (counter)
 
 - Post processing
     - once an hour, crunch the data
