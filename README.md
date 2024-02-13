@@ -11,28 +11,14 @@ Developed using `v0.8.3` of [`simplest-frame`](https://github.com/depatchedmode/
 
 ## Todo
 
-- Frames
-    - Poster
-        - Start Ranking
-        - Community Pulse (a sparkline of overall quality over the past 2 weeks)
-        - View Lists
-    - Judge
-        - Thumbs up
-        - Dice 
-        - Thumbs down
+- [ ] Explore moving data storage to eg. FaunaDB so that it's queryable
+- [ ] Define some sort of quorum requirement before a cast can be considered "judged"
+- [ ] Improve sampling: We could store casts: castHash, judgements (counter). Would help us spot which casts need additional judgements.
+- [ ] Leaderboard: show which casters are contributing the most "signal": fid, judgements (counter)
+- [ ] 
 
-- Data needed:
-    - a random cast from a channel
-    - warpcast opengraph image
-
-- Data to Store:
-    - Judgements: id(judgeFid+castHash), judgeFid, castHash, casterFid, judgement, timestamp
-    - Casts: castHash, judgements (counter)
-    - Casters: fid, judgements (counter)
-
-- Post processing
-    - once an hour, crunch the data
-    - calculate all casters reputations
+- Post processing: hourly?
+    - [ ] calculate all casters reputations - looks at something like EigenTrust
 
 ## Getting started
 
