@@ -13,6 +13,7 @@ export default {
         await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 1);
         return `judge`;
       case 3: // re-roll
+        await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 0);
         return `judge`;
       case 4: // bad
         await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, -1);
