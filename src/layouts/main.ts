@@ -1,8 +1,8 @@
-import { FrameActionDataParsed } from "frames.js";
+// import { FrameActionDataParsed } from "frames.js";
 
 export default (
   frameHTML: string,
-  frameMessage: FrameActionDataParsed
+  // frameMessage: FrameActionDataParsed
 ) => {
 	const html = String.raw;
 	const markup = html`
