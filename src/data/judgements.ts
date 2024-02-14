@@ -1,7 +1,7 @@
 import { getStore } from '@netlify/blobs';
 
-const buildJudgementId = (castHash, judgeFid) => {
-  return `${castHash}-${judgeFid}`;
+const dateFolder = () => {
+  return new Date().toISOString().split('T')[0]
 }
 
 // Utility functions to abstract the fetching and setting operations
@@ -13,13 +13,15 @@ const getJudgement = async (castHash, judgeFid) => {
 
 const setJudgement = async (castHash, judgeFid, judgement) => {
   const store = getStore('judgements');
-  const data = await store.setJSON(buildJudgementId(castHash, judgeFid), {
+  const judgedAt = new Date().toISOString();
+  const key = `${dateFolder()}/${castHash}-${judgeFid}`;
+
+  return await store.setJSON(key, {
     judgeFid,
     castHash,
     judgement,
-    judgedAt: new Date().toISOString()
+    judgedAt
   });
-  return data;
 };
 
 export {
