@@ -5,9 +5,9 @@ const dateFolder = () => {
 }
 
 // Utility functions to abstract the fetching and setting operations
-const getJudgement = async (castHash, judgeFid) => {
+const getJudgement = async (date, castHash, judgeFid) => {
   const store = getStore('judgements');
-  const judgementId = buildJudgementId(castHash, judgeFid);
+  const judgementId = `${date}/${castHash}-${judgeFid}`;
   return await store.get(judgementId, { type: 'json' } ) || {};
 };
 
@@ -24,7 +24,23 @@ const setJudgement = async (castHash, judgeFid, judgement) => {
   });
 };
 
+const getJudgementDay = async (day) => {
+  const store = getStore('judgements', { fetch: fetch });
+  const judgements = [];
+  
+  // Assuming the use of directories for each day, e.g., judgements/2024-02-12/
+  const { blobs } = await store.list({ prefix: `${day}/` });
+
+  for (const blob of blobs) {
+    const judgementData = await store.get(blob.key, { type: 'json' });
+    judgements.push(judgementData);
+  }
+
+  return judgements;
+};
+
 export {
   getJudgement,
-  setJudgement
+  setJudgement,
+  getJudgementDay,
 }
