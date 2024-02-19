@@ -1,3 +1,14 @@
+import { NeynarAPIClient, CastParamType } from "@neynar/nodejs-sdk";
+const client = new NeynarAPIClient(process.env.NEYNAR_API_KEY);
+
+const getCast = async(castHash) => {
+  const response = await client.lookUpCastByHashOrWarpcastUrl(
+    castHash,
+    CastParamType.Hash
+  );
+  return response.cast;
+}
+
 const getRandomCast = async() => {
   const options = {
     method: 'GET',
@@ -27,5 +38,6 @@ const getRandomCast = async() => {
 }
 
 export {
+  getCast,
   getRandomCast,
 }
