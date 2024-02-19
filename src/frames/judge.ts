@@ -6,17 +6,18 @@ import { setJudgement } from '../data/judgements.js';
 export default {
   name: 'judge',
   logic: async (frameMessage: FrameActionDataParsed, frameContext) => {
+    console.log('responding to button press');
     switch (frameMessage.buttonIndex) {
       case 1:
         return `poster`;
       case 2: // good
-        await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 1);
+        await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 'positive');
         return `judge`;
       case 3: // re-roll
-        await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 0);
+        await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 'neutral');
         return `judge`;
       case 4: // bad
-        await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, -1);
+        await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 'negative');
         return `judge`;
     }
   },
