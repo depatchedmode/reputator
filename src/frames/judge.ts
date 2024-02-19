@@ -38,8 +38,6 @@ export default {
       </frame-button>
       <frame-post-var name="castHash" value="${cast.hash}">
       </frame-post-var>
-      <frame-post-var name="hello" value="world">
-      </frame-post-var>
     `;
   },
 }
