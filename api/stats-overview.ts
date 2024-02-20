@@ -31,5 +31,5 @@ export default async() => {
 };
 
 export const config = {
-    path: "/stats"
+    path: "/stats/overview"
 };

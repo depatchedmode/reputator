@@ -1,10 +1,11 @@
 import { getStore } from '@netlify/blobs';
+import { getCast } from '../src/data/casts.js';
 
 export default async(req) => {
   // Initialize the store
   const searchParams = new URL(req.url).searchParams;
-  const targetDate = searchParams.get('date') || '2024-02-13';
-  const store = getStore('judgements-by-date');
+  const targetDate = searchParams.get('date') || '2024-02-13'; // default to the launch date
+  const store = getStore('results');
 
   // const dayInMS = 1000*60*60*24;
   const dayInMS = 0;
@@ -16,14 +17,8 @@ export default async(req) => {
   });
 
   try {
-    // let summary = await store.get(`judgements-by-date/${targetDate}`, { type: 'json'});
-    // console.log(summary);
-    // if (!summary) {
-      const summary = await fetchAndAggregateJudgements(targetDate);
-      await store.setJSON(`judgements-by-date/${targetDate}`, summary);
-    // }
-
-    // console.log(summary);
+    const summary = await fetchAndAggregateJudgements(targetDate);
+    await store.setJSON(`judgements-by-date/${targetDate}`, summary);
     
     return new Response(JSON.stringify(summary), { 
       status: 200,
@@ -40,7 +35,6 @@ export default async(req) => {
 async function listJudgementBlobsForDate(date) {
   const store = getStore('judgements');
   const { blobs } = await store.list({ directories: true, prefix: `${date}/` });
-  console.log(blobs);
   return blobs;
 }
 
@@ -62,9 +56,7 @@ async function fetchAndAggregateJudgements(targetDate) {
 
   const store = getStore('judgements');
   for (const blob of blobsList) {
-    console.log(blob);
     const judgementData = await store.get(blob.key, { type: 'json' });
-    console.log(judgementData);
     summary.date = judgementData.judgedAt.split('T')[0]; // Extract date
     summary.totalJudgements++;
     if (judgementData.judgement === 'positive' || judgementData.judgement === 1) 
@@ -74,6 +66,13 @@ async function fetchAndAggregateJudgements(targetDate) {
     if (judgementData.judgement === 'negative' || judgementData.judgement === -1) 
       summary.judgementBreakdown.totalNegative++;
     summary.judgementIds.add(blob.key);
+
+    // older judgement entries didn't include the casterFid, so we fetch it
+    if (!judgementData.casterFid) {
+      const cast = await getCast(judgementData.castHash);
+      judgementData.casterFid = cast.author.fid;
+    }
+
     summary.castHashes.add(judgementData.castHash);
     summary.casterFids.add(judgementData.casterFid);
     summary.judgeFids.add(judgementData.judgeFid);
@@ -95,5 +94,5 @@ async function fetchAndAggregateJudgements(targetDate) {
 }
 
 export const config = {
-  path: "/judgements-by-date"
+  path: "/process/judgements-by-date"
 };
