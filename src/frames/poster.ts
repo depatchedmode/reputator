@@ -4,7 +4,6 @@ const html = String.raw;
 export default {
   name: 'poster',
   logic: (message: FrameActionDataParsed) => {
-    console.log(message);
     switch (message.buttonIndex) {
       case 1:
         return `judge`;

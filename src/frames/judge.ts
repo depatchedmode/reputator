@@ -6,7 +6,6 @@ import { setJudgement } from '../data/judgements.js';
 export default {
   name: 'judge',
   logic: async (frameMessage: FrameActionDataParsed, frameContext) => {
-    console.log('responding to button press');
     switch (frameMessage.buttonIndex) {
       case 1:
         return `poster`;
