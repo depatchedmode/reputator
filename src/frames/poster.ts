@@ -6,12 +6,11 @@ export default {
   logic: (message: FrameActionDataParsed) => {
     switch (message.buttonIndex) {
       case 1:
-        return `judge`;
+        console.log('tutorial 1!')
+        return `tutorial1`;
       case 2:
-        return `pulse`;
+        return `results`;
       case 3:
-        return `myrank`;
-      case 4:
         return `credits`;
     }
   },
@@ -21,10 +20,7 @@ export default {
       ⚖️ Judge
     </frame-button>
     <frame-button>
-      ❤️‍🔥 Pulse
-    </frame-button>
-    <frame-button>
-      🫵 You
+      ❤️‍🔥 Results
     </frame-button>
     <frame-button>
       ℹ️ Info

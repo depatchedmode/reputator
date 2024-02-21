@@ -7,6 +7,8 @@ export default {
     switch (msg.buttonIndex) {
       case 1:
         return `poster`;
+      case 2:
+        return `results`;
     }
   },
   content: () => html`
@@ -28,10 +30,10 @@ export default {
       </div>
     </frame-image>
     <frame-button>
-      ⬅️ Back
+      🏚️ Home
     </frame-button>
-    <frame-button action="link" target="https://github.com">
-      View all rankings
+    <frame-button>
+      ⬅️ Results
     </frame-button>
   `
 };
