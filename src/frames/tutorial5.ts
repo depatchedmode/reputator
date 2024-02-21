@@ -7,10 +7,10 @@ export default {
     switch (frameMessage.buttonIndex) {
       case 1:
         return `tutorial4`;
-      case 2: // re-roll      
-        return `judge`;
-      case 3: // bad
+      case 2: // no    
         return `tutorialfeedback`;
+      case 3: // yes
+        return `judge`;
     }
   },
   content: async () => {
