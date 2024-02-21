@@ -7,15 +7,13 @@ export default {
   name: 'judge',
   logic: async (frameMessage: FrameActionDataParsed, frameContext) => {
     switch (frameMessage.buttonIndex) {
-      case 1:
-        return `poster`;
-      case 2: // good
+      case 1: // good
         await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 'positive');
         return `judge`;
-      case 3: // re-roll
+      case 2: // re-roll
         await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 'neutral');
         return `judge`;
-      case 4: // bad
+      case 3: // bad
         await setJudgement(frameContext.searchParams.get('castHash'), frameMessage.requesterFid, 'negative');
         return `judge`;
     }
@@ -25,9 +23,6 @@ export default {
     return html`
       <frame-image src="https://client.warpcast.com/v2/og-image?castHash=${cast.hash}" />
       <frame-button>
-        ⬅️
-      </frame-button>
-      <frame-button>
         👍
       </frame-button>
       <frame-button>
@@ -35,6 +30,9 @@ export default {
       </frame-button>
       <frame-button>
         👎
+      </frame-button>
+      <frame-button action="link" target="https://warpcast.com/~/conversations/${cast.hash}">
+        View Cast
       </frame-button>
       <frame-post-var name="castHash" value="${cast.hash}">
       </frame-post-var>

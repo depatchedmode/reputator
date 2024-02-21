@@ -2,13 +2,15 @@ import { FrameActionDataParsed } from "frames.js";
 const html = String.raw;
 
 export default {
-  name: 'pulse',
+  name: 'results',
   logic: async (msg: FrameActionDataParsed) => {
     switch (msg.buttonIndex) {
       case 1:
         return `poster`;
       case 2:
-        return `results`;
+        return `pulse`;
+      case 3:
+        return `myrank`;
     }
   },
   content: () => html`
@@ -26,14 +28,17 @@ export default {
         line-height: 1;
       ">
         <h1 style="font-size: 4rem">Coming soon...</h1>
-        <h2 style="font-size: 2rem">A sparkline of the last 14 days of avg. judgements</h2>
+        <h2 style="font-size: 2rem">An overview of reputator interactions for this channel</h2>
       </div>
     </frame-image>
     <frame-button>
       🏚️ Home
     </frame-button>
     <frame-button>
-      ⬅️ Results
+      ❤️‍🔥 Channel
+    </frame-button>
+    <frame-button>
+      🫵 You
     </frame-button>
   `
 };
