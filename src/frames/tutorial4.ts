@@ -2,14 +2,14 @@ import { FrameActionDataParsed } from 'frames.js';
 const html = String.raw;
 
 export default {
-  name: 'tutorial4',
+  name: 'tutorial5',
   logic: async (frameMessage: FrameActionDataParsed) => {
     switch (frameMessage.buttonIndex) {
       case 1:
         return `tutorial3`;
-      case 2: // re-roll      
-        return `tutorial5`;
-      case 3: // bad
+      case 2: // no    
+        return `tutorialfeedback`;
+      case 3: // yes
         return `judge`;
     }
   },
@@ -20,10 +20,10 @@ export default {
         ⬅️ Back
       </frame-button>
       <frame-button>
-        ➡️ Next
+        No
       </frame-button>
       <frame-button>
-        ⤵️ Skip
+        Yes
       </frame-button>
     `;
   },

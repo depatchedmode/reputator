@@ -9,7 +9,6 @@ import tutorial1 from "./tutorial1.js";
 import tutorial2 from "./tutorial2.js";
 import tutorial3 from "./tutorial3.js";
 import tutorial4 from "./tutorial4.js";
-import tutorial5 from "./tutorial5.js";
 import tutorialfeedback from "./tutorialfeedback.js";
 
 export default {
@@ -24,6 +23,5 @@ export default {
   tutorial2,
   tutorial3,
   tutorial4,
-  tutorial5,
   tutorialfeedback
 }
