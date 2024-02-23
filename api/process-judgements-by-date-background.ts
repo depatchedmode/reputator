@@ -69,8 +69,12 @@ async function fetchAndAggregateJudgements(targetDate) {
 
     // older judgement entries didn't include the casterFid, so we fetch it
     if (!judgementData.casterFid) {
-      const cast = await getCast(judgementData.castHash);
-      judgementData.casterFid = cast.author.fid;
+      try {
+        const cast = await getCast(judgementData.castHash);
+        judgementData.casterFid = cast.author.fid;
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     summary.castHashes.add(judgementData.castHash);
