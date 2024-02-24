@@ -72,8 +72,9 @@ async function fetchAndAggregateJudgements(targetDate) {
       try {
         const cast = await getCast(judgementData.castHash);
         judgementData.casterFid = cast.author.fid;
+        console.log(`Cast ${judgementData.castHash} filled in`);
       } catch (err) {
-        console.log(err);
+        console.log(`Cast ${judgementData.castHash} not found`);
       }
     }
 
